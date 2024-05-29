@@ -25,10 +25,10 @@ executeSelectOne(String id) 메소드가 호출된 후, postSelect(List<User> us
 3\. postSelect(List<User> user) 메소드에서는 조회된 사용자의 수를 로그로 출력한다.  
 4\. 마지막으로, getUser(String id) 메소드는 조회된 사용자 정보를 반환한다.  
 해당 워크플로우는 템플릿 메소드 패턴을 사용하여 공통 작업 흐름을 정의하고, 서브클래스에서 필요한 메소드를 구현하는 방식으로 동작하며, 이를 통해 코드의 재사용성을 높이고, 유지 보수를 용이하게 할 수 있다.
+### **2\. 핵심 로직 정리**
+이 프로젝트에서는 템플릿 메소드 패턴을 사용하여 공통 작업 흐름을 정의하고 있습니다. 템플릿 메소드 패턴은 상위 클래스에서 공통 작업 흐름을 정의하고, 하위 클래스에서 이를 구체화하는 디자인 패턴이다.
 
-이 프로젝트에서는 템플릿 메소드 패턴을 사용하여 공통 작업 흐름을 정의하고 있습니다. 템플릿 메소드 패턴은 상위 클래스에서 공통 작업 흐름을 정의하고, 하위 클래스에서 이를 구체화하는 디자인 패턴입니다.
-
-여기서 `AbstractBaseMapper` 인터페이스가 템플릿 메소드 패턴의 역할을 합니다. `AbstractBaseMapper` 인터페이스에서는 `selectOne(String id)` 메소드를 통해 공통 작업 흐름을 정의하고 있습니다. 이 메소드는 먼저 `executeSelectOne(String id)`를 호출하여 데이터를 조회하고, 그 후 `postSelect(List<T> result)`를 호출하여 조회 후의 작업을 수행합니다.
+여기서 `AbstractBaseMapper` 인터페이스가 템플릿 메소드 패턴의 역할을 한다. `AbstractBaseMapper` 인터페이스에서는 `selectOne(String id)` 메소드를 통해 공통 작업 흐름을 정의하고 있다. 이 메소드는 먼저 `executeSelectOne(String id)`를 호출하여 데이터를 조회하고, 그 후 `postSelect(List<T> result)`를 호출하여 조회 후의 작업을 수행한다.
 
 ```java
 public interface AbstractBaseMapper<T> {
@@ -46,7 +46,7 @@ public interface AbstractBaseMapper<T> {
 }
 ```
 
-`UserMapper` 인터페이스는 `AbstractBaseMapper`를 상속받아 `executeSelectOne(String id)`와 `postSelect(List<User> user)` 메소드를 구체화하고 있습니다. `executeSelectOne(String id)` 메소드에서는 사용자 정보를 데이터베이스에서 조회하는 로직을 구현하고, `postSelect(List<User> user)` 메소드에서는 조회된 사용자의 수를 로그로 출력하는 로직을 구현하고 있습니다.
+`UserMapper` 인터페이스는 `AbstractBaseMapper`를 상속받아 `executeSelectOne(String id)`와 `postSelect(List<User> user)` 메소드를 구체화하고 있다. `executeSelectOne(String id)` 메소드에서는 사용자 정보를 데이터베이스에서 조회하는 로직을 구현하고, `postSelect(List<User> user)` 메소드에서는 조회된 사용자의 수를 로그로 출력하는 로직을 구현하고 있다.
 
 ```java
 @Mapper
@@ -63,6 +63,6 @@ public interface UserMapper extends AbstractBaseMapper<User> {
 }
 ```
 
-이렇게 템플릿 메소드 패턴을 사용하면 공통 작업 흐름을 한 곳에서 관리할 수 있어 코드의 재사용성을 높이고 유지 보수를 용이하게 할 수 있습니다.
+이렇게 템플릿 메소드 패턴을 사용하면 공통 작업 흐름을 한 곳에서 관리할 수 있어 코드의 재사용성을 높이고 유지 보수를 용이하게 할 수 있다.
 
 끝
