@@ -28,7 +28,7 @@ executeSelectOne(String id) 메소드가 호출된 후, postSelect(List<User> us
 
 ### **3\. 핵심 로직 정리**
 
-이 프로젝트에서는 템플릿 메소드 패턴을 사용하여 공통 작업 흐름을 정의하고 있습니다. 템플릿 메소드 패턴은 상위 클래스에서 공통 작업 흐름을 정의하고, 하위 클래스에서 이를 구체화하는 디자인 패턴이다.
+이 프로젝트에서는 템플릿 메소드 패턴을 사용하여 공통 작업 흐름을 정의하고 있다. 템플릿 메소드 패턴은 상위 클래스에서 공통 작업 흐름을 정의하고, 하위 클래스에서 이를 구체화하는 디자인 패턴이다.
 
 여기서 `AbstractBaseMapper` 인터페이스가 템플릿 메소드 패턴의 역할을 한다. `AbstractBaseMapper` 인터페이스에서는 `selectOne(String id)` 메소드를 통해 공통 작업 흐름을 정의하고 있다. 이 메소드는 먼저 `executeSelectOne(String id)`를 호출하여 데이터를 조회하고, 그 후 `postSelect(List<T> result)`를 호출하여 조회 후의 작업을 수행한다.
 
